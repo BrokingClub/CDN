@@ -1,5 +1,10 @@
 {
   "name": "broking-club-cdn",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "laravel-elixir": "^5.0.0",
+    "laravel-elixir-webpack": "^1.0.1"
+  }
 }
