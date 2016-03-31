@@ -1,12 +1,11 @@
 package club.broking.cdn.setup;
 
 import org.eclipse.jetty.server.Connector;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.server.handler.DefaultHandler;
-import org.eclipse.jetty.server.handler.HandlerCollection;
+import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
 
 public class Jetty {
 
@@ -14,19 +13,19 @@ public class Jetty {
         Server server = new Server();
         ServerConnector connector = new ServerConnector(server);
 
-        connector.setPort(80);
+        connector.setPort(8000);
         server.setConnectors(new Connector[]{ connector });
 
         ServletContextHandler context = new ServletContextHandler();
 
         context.setContextPath("/");
-        //context.addServlet(HelloServlet.class, "/hello");
-        //context.addServlet(AsyncEchoServlet.class, "/echo/*");
 
-        HandlerCollection handlers = new HandlerCollection();
-        handlers.setHandlers(new Handler[] { context, new DefaultHandler() });
+        ServletHolder holder = context.addServlet(DefaultServlet.class, "/");
 
-        server.setHandler(handlers);
+        holder.setInitParameter("resourceBase", "./src/main/public");
+        holder.setInitParameter("dirAllowed", "false");
+
+        server.setHandler(context);
 
         try {
             server.start();
