@@ -12,3 +12,5 @@
 hs_err_pid*
 
 /.idea
+/node_modules
+/src/main/public/components

@@ -22,7 +22,7 @@ public class Jetty {
 
         ServletHolder holder = context.addServlet(DefaultServlet.class, "/");
 
-        holder.setInitParameter("resourceBase", "./src/main/public");
+        holder.setInitParameter("resourceBase", "./public");
         holder.setInitParameter("dirAllowed", "false");
 
         server.setHandler(context);
