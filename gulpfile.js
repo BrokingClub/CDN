@@ -8,7 +8,7 @@ elixir(function(mix) {
     mix.sass('app.scss');
     mix.webpack('app.js');
     mix.browserSync({
-        proxy: 'alonian.dev',
+        proxy: 'localhost:8000',
         ui: false,
         ghostMode: false
     });
