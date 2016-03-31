@@ -1,4 +1,9 @@
 {
   "name": "broking-club-cdn",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2",
+    "vue": "^1.0.20",
+    "tether": "^1.2.0"
+  }
 }
