@@ -1,18 +1,12 @@
 <template>
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 center-block">
-            <h1>Backend</h1>
+        <div class="col-xs-12 col-sm-6">
+            <h2>Produkte</h2>
             <hr>
-            <div class="form-group">
-                <label for="name">Benutzername</label>
-                <input id="name" type="text" class="form-control" placeholder="Benutzername" v-model="name">
-            </div>
-            <div class="form-group">
-                <label for="password">Passwort</label>
-                <input id="password" type="password" class="form-control" placeholder="Passwort" v-model="password">
-            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <h2>Benutzer</h2>
             <hr>
-            <button type="button" class="btn btn-primary btn-block" @click="login()">Anmelden</button>
         </div>
     </div>
 </template>

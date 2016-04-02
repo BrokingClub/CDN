@@ -21,19 +21,12 @@ class ApiService {
         });
     }
 
-    get(url) {
-        return this.handleError(this.http.get('/api' + url));
-    }
-
     post(url, data) {
-        return this.handleError(this.http.post('/api' + url, data));
-    }
-
-    handleError(promise) {
-        return promise.catch(err => {
-            toastr.error('Bitte versuchen Sie es später erneut', 'Unbekannter Fehler');
-            console.error(err);
-        });
+        return this.http.post('/api' + url, data)
+            .catch(err => {
+                toastr.error('Bitte versuchen Sie es später erneut', 'Unbekannter Fehler');
+                console.error(err);
+            });
     }
 
 }
