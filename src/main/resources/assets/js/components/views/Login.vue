@@ -13,6 +13,8 @@
             </div>
             <hr>
             <button type="button" class="btn btn-primary btn-block" @click="login()">Anmelden</button>
+            <hr>
+            <a v-link="{ path: '/registrieren' }">Sie benötigen einen Account?</a>
         </div>
     </div>
 </template>

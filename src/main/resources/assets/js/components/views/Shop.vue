@@ -27,6 +27,7 @@
         methods: {
             buy(product) {
                 if(!userService.user) {
+                    toastr.info('Sie müssen sich anmelden um Produkte zu kaufen', 'Anmeldung erforderlich');
                     this.$route.router.go('/anmelden');
                     return;
                 }
