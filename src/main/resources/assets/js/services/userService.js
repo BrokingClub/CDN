@@ -1,15 +1,15 @@
 class UserService {
 
     constructor() {
-        this.loggedIn = true;
+        this.loggedIn = false;
         this.isAdmin = false;
-        this.user = {
-            name: 'Marc'
-        };
+        this.user = null;
     }
 
     logout() {
         this.loggedIn = false;
+        this.isAdmin = false;
+        this.user = null;
     }
 
 }
