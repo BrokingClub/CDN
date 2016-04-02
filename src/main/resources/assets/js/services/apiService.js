@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import userService from './userService';
 
 class ApiService {
 
@@ -21,7 +22,13 @@ class ApiService {
         });
     }
 
-    post(url, data) {
+    users() {
+        return this.post('/users', {
+            token: userService.user.token
+        });
+    }
+
+    post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {
                 toastr.error('Bitte versuchen Sie es später erneut', 'Unbekannter Fehler');

@@ -2,6 +2,7 @@ package club.broking.cdn.setup;
 
 import club.broking.cdn.servlets.login.LoginServlet;
 import club.broking.cdn.servlets.register.RegisterServlet;
+import club.broking.cdn.servlets.users.UsersServlet;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -32,6 +33,7 @@ public class Jetty {
 
         context.addServlet(RegisterServlet.class, "/api/register");
         context.addServlet(LoginServlet.class, "/api/login");
+        context.addServlet(UsersServlet.class, "/api/users");
 
         /* Error Handler */
         ErrorPageErrorHandler errorHandler = new ErrorPageErrorHandler();

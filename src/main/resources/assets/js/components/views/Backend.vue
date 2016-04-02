@@ -50,13 +50,13 @@
                 users: []
             };
         },
-        activate(done) {
-            apiService.users()
-                .then(users => {
-                    this.users = users;
-
-                    done();
-                })
+        route: {
+            activate() {
+                return apiService.users()
+                    .then(response => {
+                        this.users = response.data.users;
+                    })
+            }
         },
         methods: {
             toggleAdmin(user) {
