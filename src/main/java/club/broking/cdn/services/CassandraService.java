@@ -1,9 +1,6 @@
 package club.broking.cdn.services;
 
-import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.Host;
-import com.datastax.driver.core.Metadata;
-import com.datastax.driver.core.Session;
+import com.datastax.driver.core.*;
 
 public class CassandraService {
 
@@ -40,6 +37,14 @@ public class CassandraService {
     public void createSchema() {
         this.session.execute("CREATE KEYSPACE IF NOT EXISTS shop WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': 3 };");
         this.session.execute("CREATE TABLE IF NOT EXISTS shop.users (id uuid PRIMARY KEY, email text, name text, password text, admin boolean);");
+    }
+
+    public void querySchema() {
+        ResultSet results = this.session.execute("SELECT * FROM shop.users;");
+
+        for(Row row:results) {
+            System.out.println(row.toString());
+        }
     }
 
     public Session getSession() {

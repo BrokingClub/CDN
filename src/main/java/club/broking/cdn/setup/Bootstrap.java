@@ -10,6 +10,7 @@ public class Bootstrap {
 
         cassandraService.connect("localhost");
         cassandraService.createSchema();
+        cassandraService.querySchema();
         jetty.setup();
     }
 
