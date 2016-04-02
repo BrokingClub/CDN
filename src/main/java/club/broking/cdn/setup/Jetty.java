@@ -13,7 +13,7 @@ public class Jetty {
         Server server = new Server();
         ServerConnector connector = new ServerConnector(server);
 
-        connector.setPort(8000);
+        connector.setPort(9000);
         server.setConnectors(new Connector[]{ connector });
 
         ServletContextHandler context = new ServletContextHandler();

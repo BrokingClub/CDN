@@ -4,6 +4,9 @@
   "dependencies": {
     "bootstrap": "v4.0.0-alpha.2",
     "vue": "^1.0.20",
-    "tether": "^1.2.0"
+    "tether": "^1.2.0",
+    "vue-router": "^0.7.11",
+    "toastr": "^2.1.2",
+    "lodash": "^4.7.0"
   }
 }
