@@ -20,6 +20,5 @@
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-io:9.3.8.v20160314" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-servlet:9.3.8.v20160314" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-security:9.3.8.v20160314" level="project" />
-    <orderEntry type="library" name="CDN node_modules" level="project" />
   </component>
 </module>
