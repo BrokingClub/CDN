@@ -37,7 +37,7 @@ class ApiService {
     }
 
     deleteUser(user) {
-        return this.post('/user/delete', {
+        return this.post('/delete/user', {
             token: userService.user.token,
             id: user.id
         });
