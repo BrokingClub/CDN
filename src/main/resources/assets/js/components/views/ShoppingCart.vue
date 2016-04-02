@@ -51,6 +51,8 @@
                     return;
                 }
 
+                toastr.success('Ihre Bestellung über ' + this.totalPrice + ' &euro; wurde angenommen', 'Bestellung abgesendet');
+
                 this.shoppingCartService.products = [];
 
                 this.$route.router.go('/bestellungen');
