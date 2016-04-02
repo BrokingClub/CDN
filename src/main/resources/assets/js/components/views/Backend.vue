@@ -31,7 +31,7 @@
                     <div class="card-block">
                         <h4 class="card-title">{{ product.name }}</h4>
                         <p class="card-text">Preis: {{ product.price }} &euro;</p>
-                        <button type="button" class="btn btn-danger-outline btn-sm">
+                        <button type="button" class="btn btn-danger-outline btn-sm" @click="deleteProduct(product)">
                             Löschen
                             <i class="fa fa-trash-o"></i>
                         </button>
@@ -135,7 +135,7 @@
                             }
                         }
 
-                        toastr.success(user.name + ' wurde aus der Datenbank gelöscht', 'Löschen erfolgreich');
+                        toastr.success(user.name + ' wurde aus der Datenbank gelöscht', 'Benutzer gelöscht');
                     });
             },
             addProduct() {
@@ -178,6 +178,24 @@
                 };
 
                 fileReader.readAsDataURL(file);
+            },
+            deleteProduct(product) {
+                apiService.deleteProduct(product)
+                    .then(response => {
+                        if(response.data.result !== true) {
+                            toastr.error(product.name + ' konnte nicht gelöscht werden', 'Fehler beim Löschen');
+                            return;
+                        }
+
+                        for(let i = 0; i < this.products.length; i++) {
+                            if(this.products[i].id === product.id) {
+                                this.products.splice(i, 1);
+                                break;
+                            }
+                        }
+
+                        toastr.success(product.name + ' wurde aus der Datenbank gelöscht', 'Produkt gelöscht');
+                    });
             }
         }
     };

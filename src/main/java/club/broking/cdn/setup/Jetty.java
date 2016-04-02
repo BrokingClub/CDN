@@ -2,6 +2,7 @@ package club.broking.cdn.setup;
 
 import club.broking.cdn.servlets.add.product.AddProductServlet;
 import club.broking.cdn.servlets.admin.AdminServlet;
+import club.broking.cdn.servlets.delete.product.DeleteProductServlet;
 import club.broking.cdn.servlets.login.LoginServlet;
 import club.broking.cdn.servlets.products.ProductsServlet;
 import club.broking.cdn.servlets.register.RegisterServlet;
@@ -42,6 +43,7 @@ public class Jetty {
         context.addServlet(DeleteUserServlet.class, "/api/delete/user");
         context.addServlet(AddProductServlet.class, "/api/add/product");
         context.addServlet(ProductsServlet.class, "/api/products");
+        context.addServlet(DeleteProductServlet.class, "/api/delete/product");
 
         /* Error Handler */
         ErrorPageErrorHandler errorHandler = new ErrorPageErrorHandler();

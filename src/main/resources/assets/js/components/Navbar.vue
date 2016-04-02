@@ -53,6 +53,7 @@
                 event.preventDefault();
                 toastr.info('Bis bald ' + this.userService.user.name, 'Abgemeldet');
                 userService.logout();
+                this.$route.router.go('/');
             }
         }
     };

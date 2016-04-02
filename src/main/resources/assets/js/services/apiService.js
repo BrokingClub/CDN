@@ -56,6 +56,13 @@ class ApiService {
         return this.post('/products');
     }
 
+    deleteProduct(product) {
+        return this.post('/delete/product', {
+            token: userService.user.token,
+            id: product.id
+        });
+    }
+
     post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {
