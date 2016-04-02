@@ -2,11 +2,69 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <h2>Produkte</h2>
-            <hr>
+            <br>
         </div>
         <div class="col-xs-12 col-sm-6">
             <h2>Benutzer</h2>
-            <hr>
+            <br>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Admin</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="user in users">
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td style="text-align: center">
+                            <input type="checkbox" v-model="user.admin" @click="toggleAdmin(user)">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger-outline btn-sm" @click="deleteUser(user)">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
+
+<script type="text/babel">
+    import apiService from '../../services/apiService';
+
+    export default {
+        data() {
+            return {
+                users: []
+            };
+        },
+        activate(done) {
+            apiService.users()
+                .then(users => {
+                    this.users = users;
+
+                    done();
+                })
+        },
+        methods: {
+            toggleAdmin(user) {
+
+            },
+            deleteUser(user) {
+
+            }
+        }
+    };
+</script>
