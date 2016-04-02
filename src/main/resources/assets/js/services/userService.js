@@ -1,10 +1,7 @@
 class UserService {
 
     constructor() {
-        this.token = null;
-        this.name = null;
-        this.admin = false;
-        this.loggedIn = false;
+        this.user = null;
 
         this.init();
     }
@@ -19,38 +16,26 @@ class UserService {
                 return;
             }
 
-            this.token = user.token;
-            this.name = user.name;
-            this.admin = user.admin;
-            this.loggedIn = true;
+            this.user = user;
         } catch(err) {
             console.error(err);
         }
     }
 
     login(token, name, admin) {
-        this.token = token;
-        this.name = name;
-        this.admin = admin;
-        const user = this.user();
+        this.user = {
+            token: token,
+            name: name,
+            admin: admin
+        };
 
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(this.user));
     }
 
     logout() {
-        this.token = null;
-        this.name = null;
-        this.admin = false;
+        this.user = null;
 
         localStorage.removeItem('user');
-    }
-
-    user() {
-        return {
-            token: this.token,
-            name: this.name,
-            admin: this.admin
-        };
     }
 
 }
