@@ -117,7 +117,42 @@
                     });
             },
             addProduct() {
+                if(!window.FileReader) {
+                    window.location.href = 'https://www.google.com/chrome';
+                    return;
+                }
 
+                const $file = $('#file');
+                const files = $file.prop('files');
+
+                if(files.length !== 1) {
+                    toastr.warning('Produkt Bild fehlt', 'Bild auswählen');
+                    return;
+                }
+
+                NProgress.start();
+
+                const file = files[0];
+                const fileReader = new FileReader();
+
+                fileReader.onload = () => {
+                    NProgress.inc();
+
+                    const fileData = fileReader.result;
+
+                    apiService.addProduct(this.product, this.price, fileData)
+                        .then(response => {
+                            NProgress.done();
+
+                            if(response.data.result !== true) {
+                                toastr.error(this.product + ' konnte nicht gespeichert werden', 'Fehler beim Hinzufügen');
+                                return;
+                            }
+
+                            toastr.success(this.product + ' wurde gespeichert', 'Produkt hinzugefügt');
+                        })
+                        .catch(() => NProgress.done());
+                };
             }
         }
     };

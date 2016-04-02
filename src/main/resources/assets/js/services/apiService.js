@@ -43,6 +43,15 @@ class ApiService {
         });
     }
 
+    addProduct(product, price, image) {
+        return this.post('/add/product', {
+            token: userService.user.token,
+            product: product,
+            price: price,
+            image: image
+        });
+    }
+
     post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {

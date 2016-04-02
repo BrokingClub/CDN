@@ -10,3 +10,4 @@ toastr.options.positionClass = 'toast-bottom-right';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 router.start(App, 'app');
+NProgress.configure({ showSpinner: false });
