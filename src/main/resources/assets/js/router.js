@@ -2,9 +2,11 @@ import VueRouter from 'vue-router';
 
 /* Views */
 import Shop from './components/views/Shop.vue';
-import Backend from './components/views/Backend.vue';
+import ShoppingCart from './components/views/ShoppingCart.vue';
+import Orders from './components/views/Orders.vue';
 import Register from './components/views/Register.vue';
 import Login from './components/views/Login.vue';
+import Backend from './components/views/Backend.vue';
 /* Views */
 
 const routerOptions = {
@@ -22,14 +24,20 @@ router.map({
     '/': {
         component: Shop
     },
-    '/backend': {
-        component: Backend
+    '/warenkorb': {
+        component: ShoppingCart
+    },
+    '/bestellungen': {
+        component: Orders
     },
     '/registrieren': {
         component: Register
     },
     '/anmelden': {
         component: Login
+    },
+    '/backend': {
+        component: Backend
     }
 });
 
