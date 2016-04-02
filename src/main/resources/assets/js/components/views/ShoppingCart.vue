@@ -1,13 +1,12 @@
 <template>
     <div class="card">
         <div class="card-block">
-            <p>
-                {{{ productCountSentence }}}
-                <span v-if="productCount > 0">
-                    <br>
-                    Der Gesamtwert beträgt <strong>{{ totalPrice }} &euro;</strong>
-                </span>
-            </p>
+            <span>{{{ productCountSentence }}}</span>
+            <span v-if="productCount > 0">
+                <br>
+                Der Gesamtwert beträgt <strong>{{ totalPrice }} &euro;</strong>
+                <br><br>
+            </span>
             <button type="button" class="btn btn-primary" @click="order()" v-if="productCount > 0">Jetzt bestellen!</button>
         </div>
     </div>
