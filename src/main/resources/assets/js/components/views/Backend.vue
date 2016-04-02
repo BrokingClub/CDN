@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Preis &euro;</label>
-                        <input id="price" type="number" class="form-control" placeholder="Preis" v-model="price">
+                        <input id="price" type="number" step="0.01" min="0" class="form-control" placeholder="Preis" v-model="price">
                     </div>
                     <input id="file" type="file">
                     <button type="button" class="btn btn-primary" @click="addProduct()">Produkt hinzufügen</button>
@@ -71,15 +71,22 @@
             return {
                 users: [],
                 product: '',
-                price: 0
+                price: 0,
+                products: []
             };
         },
         route: {
             activate() {
-                return apiService.users()
+                const usersPromise = apiService.users()
                     .then(response => {
                         this.users = response.data.users;
-                    })
+                    });
+                const productsPromise = apiService.products()
+                    .then(response => {
+                        this.products = response.data.products;
+                    });
+
+                return Promise.all([ usersPromise, productsPromise ]);
             }
         },
         methods: {
@@ -153,6 +160,8 @@
                         })
                         .catch(() => NProgress.done());
                 };
+
+                fileReader.readAsBinaryString(file);
             }
         }
     };

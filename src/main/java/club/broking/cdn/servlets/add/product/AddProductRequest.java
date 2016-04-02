@@ -4,7 +4,7 @@ public class AddProductRequest {
 
     public String token;
     public String name;
-    public String price;
+    public double price;
     public String image;
 
 }

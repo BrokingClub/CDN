@@ -52,6 +52,10 @@ class ApiService {
         });
     }
 
+    products() {
+        return this.post('/products');
+    }
+
     post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {
