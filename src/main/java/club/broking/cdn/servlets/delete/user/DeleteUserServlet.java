@@ -5,7 +5,6 @@ import club.broking.cdn.models.UserAccessor;
 import club.broking.cdn.services.CassandraService;
 import club.broking.cdn.services.TokenService;
 import club.broking.cdn.servlets.AbstractJsonServlet;
-import com.datastax.driver.mapping.Mapper;
 import com.datastax.driver.mapping.MappingManager;
 import com.datastax.driver.mapping.Result;
 

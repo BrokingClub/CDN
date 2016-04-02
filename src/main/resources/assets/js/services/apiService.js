@@ -43,10 +43,10 @@ class ApiService {
         });
     }
 
-    addProduct(product, price, image) {
+    addProduct(name, price, image) {
         return this.post('/add/product', {
             token: userService.user.token,
-            product: product,
+            name: name,
             price: price,
             image: image
         });
