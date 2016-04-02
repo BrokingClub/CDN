@@ -7,10 +7,11 @@ import java.util.UUID;
 @Table(keyspace = "shop", name = "users")
 public class User {
 
-    public UUID id;
-    public String email;
-    public String name;
-    public String password;
+    private UUID id;
+    private String email;
+    private String name;
+    private String password;
+    private boolean admin;
 
     public UUID getId() {
         return id;
@@ -42,6 +43,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
 }

@@ -38,6 +38,7 @@ public class CassandraService {
     }
 
     public void createSchema() {
+        this.session.execute("DROP KEYSPACE shop;");
         this.session.execute("CREATE KEYSPACE IF NOT EXISTS shop WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': 3 };");
         this.session.execute("CREATE TABLE IF NOT EXISTS shop.users (id uuid PRIMARY KEY, email text, name text, password text, admin boolean);");
     }
@@ -46,7 +47,8 @@ public class CassandraService {
         ResultSet results = this.session.execute("SELECT * FROM shop.users;");
 
         for(Row row:results) {
-            System.out.println(row.toString());
+            System.out.printf("ID: %s | Name: %s | Email: %s | Password: %s | Admin? %s", row.getUUID("id").toString(), row.getString("name"), row.getString("email"), row.getString("password"), row.getBool("admin"));
+            System.out.println();
         }
     }
 

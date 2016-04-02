@@ -40,12 +40,17 @@
                         const data = response.data;
 
                         if(data.result !== true) {
+                            if(data.errorMessage) {
+                                toastr.error(data.errorMessage, 'Fehler bei der Registrierung');
+                                return;
+                            }
+
                             toastr.error('Bitte versuchen Sie es später erneut', 'Unbekannter Fehler');
                             return;
                         }
 
                         userService.login(data.token, this.name, false);
-                        toastr.success('Herzlick willkommen ' + this.name, 'Account registriert');
+                        toastr.success('Herzlich willkommen ' + this.name, 'Account registriert');
                         this.$route.router.go('/');
                     });
             }
