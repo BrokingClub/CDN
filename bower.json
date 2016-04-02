@@ -7,6 +7,7 @@
     "tether": "^1.2.0",
     "vue-router": "^0.7.11",
     "toastr": "^2.1.2",
-    "lodash": "^4.7.0"
+    "lodash": "^4.7.0",
+    "vue-resource": "^0.7.0"
   }
 }
