@@ -51,6 +51,7 @@ public class LoginServlet extends AbstractJsonServlet<LoginRequest, LoginRespons
         response.result = true;
         response.token = tokenService.sign(user);
         response.name = user.getName();
+        response.admin = user.isAdmin();
     }
 
     private User findUser(String name) {
