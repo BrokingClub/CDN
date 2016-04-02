@@ -80,7 +80,13 @@
                             return;
                         }
 
-                        _.remove(this.users, user);
+                        for(let i = 0; i < this.users.length; i++) {
+                            if(this.users[i].id === user.id) {
+                                this.users.splice(i, 1);
+                                break;
+                            }
+                        }
+
                         toastr.success(user.name + ' wurde aus der Datenbank gelöscht', 'Löschen erfolgreich');
                     });
             }
