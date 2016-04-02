@@ -38,7 +38,7 @@ public class CassandraService {
     }
 
     public void createSchema() {
-        this.session.execute("DROP KEYSPACE shop;");
+        //this.dropSchema();
         this.session.execute("CREATE KEYSPACE IF NOT EXISTS shop WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': 3 };");
         this.session.execute("CREATE TABLE IF NOT EXISTS shop.users (id uuid PRIMARY KEY, email text, name text, password text, admin boolean);");
     }
@@ -52,6 +52,11 @@ public class CassandraService {
         }
     }
 
+    public void dropSchema() {
+        this.session.execute("DROP KEYSPACE shop;");
+        System.out.println("Cassandra schema dropped!");
+    }
+
     public Session getSession() {
         return this.session;
     }
@@ -62,6 +67,7 @@ public class CassandraService {
 
     public void close() {
         this.cluster.close();
+        System.out.println("Cassandra connection closed");
     }
 
 }
