@@ -5,18 +5,41 @@
             <hr>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" type="email" class="form-control" placeholder="Email">
+                <input id="email" type="email" class="form-control" placeholder="Email" v-model="email">
             </div>
             <div class="form-group">
                 <label for="name">Benutzername</label>
-                <input id="name" type="text" class="form-control" placeholder="Benutzername">
+                <input id="name" type="text" class="form-control" placeholder="Benutzername" v-model="name">
             </div>
             <div class="form-group">
                 <label for="password">Passwort</label>
-                <input id="password" type="password" class="form-control" placeholder="Passwort">
+                <input id="password" type="password" class="form-control" placeholder="Passwort" v-model="password">
             </div>
             <hr>
-            <button type="button" class="btn btn-primary btn-block">Registrieren</button>
+            <button type="button" class="btn btn-primary btn-block" @click="register()">Registrieren</button>
         </div>
     </div>
 </template>
+
+<script type="text/babel">
+    import apiService from '../../services/apiService';
+
+    export default {
+        data() {
+            return {
+                email: '',
+                name: '',
+                password: ''
+            };
+        },
+        methods: {
+            register() {
+                apiService.register(this.email, this.name, this.password)
+                    .then(response => {
+                        toastr.success('Herzlick willkommen ' + this.name, 'Account registriert');
+                        this.$route.router.go('/');
+                    });
+            }
+        }
+    };
+</script>

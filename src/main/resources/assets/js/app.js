@@ -5,6 +5,7 @@ import App from './components/App.vue';
 import router from './router';
 
 Vue.config.debug = true;
+Vue.http.options.root = '/api';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
