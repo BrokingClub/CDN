@@ -1,6 +1,7 @@
 package club.broking.cdn.services;
 
 import com.datastax.driver.core.*;
+import com.datastax.driver.mapping.MappingManager;
 
 public class CassandraService {
 
@@ -8,6 +9,7 @@ public class CassandraService {
 
     private Cluster cluster;
     private Session session;
+    private MappingManager mappingManager;
 
     private CassandraService() {}
 
@@ -32,6 +34,7 @@ public class CassandraService {
         }
 
         this.session = this.cluster.connect();
+        this.mappingManager = new MappingManager(this.session);
     }
 
     public void createSchema() {
@@ -49,6 +52,10 @@ public class CassandraService {
 
     public Session getSession() {
         return this.session;
+    }
+
+    public MappingManager getMappingManager() {
+        return this.mappingManager;
     }
 
     public void close() {
