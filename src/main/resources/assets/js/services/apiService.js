@@ -28,6 +28,14 @@ class ApiService {
         });
     }
 
+    admin(user) {
+        return this.post('/admin', {
+            token: userService.user.token,
+            id: user.id,
+            admin: user.admin
+        });
+    }
+
     post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {
