@@ -35,7 +35,7 @@
                         const data = response.data;
 
                         if(data.result !== true) {
-                            toastr.error('Bitte versuchen Sie es später erneut', 'Unbekannter Fehler');
+                            toastr.error('Die Anmeldedaten sind nicht gültig', 'Anmeldung fehlgeschlagen');
                             return;
                         }
 
