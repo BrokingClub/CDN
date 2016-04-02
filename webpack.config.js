@@ -1,7 +1,8 @@
 module.exports = {
     externals: {
         vue: 'Vue',
-        'vue-router': 'VueRouter'
+        'vue-router': 'VueRouter',
+        'vue-resource': 'VueResource'
     },
     module: {
         loaders: [
