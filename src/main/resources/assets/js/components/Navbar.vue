@@ -9,6 +9,7 @@
         <div class="nav navbar-nav pull-sm-right">
             <a class="nav-item nav-link" v-link="{ path: '/anmelden' }" v-if="!loggedIn">Anmelden</a>
             <a class="nav-item nav-link" v-link="{ path: '/registrieren' }" v-if="!loggedIn">Registrieren</a>
+            <a class="nav-item nav-link" v-if="loggedIn">{{ name }}</a>
             <a class="nav-item nav-link" v-link="{ path: '/backend' }" v-if="admin">Backend</a>
             <a class="nav-item nav-link" href="" v-if="loggedIn" @click="logout($event)">Abmelden</a>
         </div>
@@ -36,6 +37,15 @@
                 }
 
                 return false;
+            },
+            name() {
+                const user = userService.user;
+
+                if(user) {
+                    return user.name;
+                }
+
+                return '';
             }
         },
         methods: {
