@@ -2,7 +2,7 @@
     <nav class="navbar navbar-full navbar-dark bg-inverse">
         <a class="navbar-brand" v-link="{ path: '/', exact: true }">Woods Sooper Dooper Shop</a>
         <div class="nav navbar-nav">
-            <a class="nav-item nav-link" v-link="{ path: '/', exact: true }">Shop</a>
+            <a class="nav-item nav-link" v-link="{ path: '/', exact: true }">Einkaufen</a>
             <a class="nav-item nav-link" v-link="{ path: '/warenkorb' }" v-if="loggedIn">Warenkorb</a>
             <a class="nav-item nav-link" v-link="{ path: '/bestellungen' }" v-if="loggedIn">Bestellungen</a>
         </div>
