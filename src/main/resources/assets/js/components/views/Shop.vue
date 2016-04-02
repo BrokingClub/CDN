@@ -17,6 +17,7 @@
 <script type="text/babel">
     import apiService from '../../services/apiService';
     import userService from '../../services/userService';
+    import shoppingCartService from '../../services/shoppingCartService';
 
     export default {
         data() {
@@ -31,6 +32,8 @@
                     this.$route.router.go('/anmelden');
                     return;
                 }
+
+                shoppingCartService.products.push(product);
             }
         },
         route: {

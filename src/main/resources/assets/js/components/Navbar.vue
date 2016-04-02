@@ -3,7 +3,10 @@
         <a class="navbar-brand" v-link="{ path: '/', exact: true }">Woods Sooper Dooper Shop</a>
         <div class="nav navbar-nav">
             <a class="nav-item nav-link" v-link="{ path: '/', exact: true }">Produkte</a>
-            <a class="nav-item nav-link" v-link="{ path: '/einkaufswagen' }" v-if="loggedIn">Einkaufswagen</a>
+            <a class="nav-item nav-link" v-link="{ path: '/einkaufswagen' }" v-if="loggedIn">
+                Einkaufswagen
+                <span class="label label-pill label-default">{{ products }}</span>
+            </a>
             <a class="nav-item nav-link" v-link="{ path: '/bestellungen' }" v-if="loggedIn">Bestellungen</a>
         </div>
         <div class="nav navbar-nav pull-sm-right">
@@ -18,14 +21,19 @@
 
 <script type="text/babel">
     import userService from '../services/userService';
+    import shoppingCartService from '../services/shoppingCartService';
 
     export default {
         data() {
             return {
-                userService
+                userService,
+                shoppingCartService
             };
         },
         computed: {
+            products() {
+                return this.shoppingCartService.products.length
+            },
             loggedIn() {
                 return userService.user !== null;
             },
