@@ -1,13 +1,27 @@
 <template>
-    <div class="card">
-        <div class="card-block">
-            <span>{{{ productCountSentence }}}</span>
-            <span v-if="productCount > 0">
-                <br>
-                Der Gesamtwert beträgt <strong>{{ totalPrice }} &euro;</strong>
-                <br><br>
-            </span>
-            <button type="button" class="btn btn-primary" @click="order()" v-if="productCount > 0">Jetzt bestellen!</button>
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-lg-5 center-block">
+
+            <div class="card">
+                <div class="card-block">
+                    <div>{{{ productCountSentence }}}</div>
+                    <div v-if="productCount > 0">
+                        Der Gesamtwert beträgt <strong>{{ totalPrice }} &euro;</strong>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="list-group">
+                <button type="button" class="list-group-item" v-for="product in products" track-by="$index" @click="removeFromCart($index)">
+                    <span class="label label-success label-pill pull-xs-right">{{ product.price }} &euro;</span>
+                    {{ product.name }}
+                </button>
+            </ul>
+
+            <br>
+
+            <button type="button" class="btn btn-primary btn-block" @click="order()" v-if="productCount > 0">Jetzt bestellen!</button>
+
         </div>
     </div>
 </template>
@@ -44,6 +58,9 @@
             }
         },
         methods: {
+            removeFromCart(index) {
+                this.products.splice(index, 1);
+            },
             order() {
                 if(this.productCount === 0) {
                     toastr.info('Es befinden sich keine Produkte im Einkaufswagen', 'Leerer Einkaufswagen');
