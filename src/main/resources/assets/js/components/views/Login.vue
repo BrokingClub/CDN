@@ -16,3 +16,34 @@
         </div>
     </div>
 </template>
+
+<script type="text/babel">
+    import apiService from '../../services/apiService';
+    import userService from '../../services/userService';
+
+    export default {
+        data() {
+            return {
+                name: '',
+                password: ''
+            };
+        },
+        methods: {
+            login() {
+                apiService.login(this.name, this.password)
+                    .then(response => {
+                        const data = response.data;
+
+                        if(data.result !== true) {
+                            toastr.error('Bitte versuchen Sie es später erneut', 'Unbekannter Fehler');
+                            return;
+                        }
+
+                        userService.login(data.token, data.name, data.admin);
+                        toastr.success('Willkommen zurück ' + data.name, 'Anmeldung erfolgreich');
+                        this.$route.router.go('/');
+                    });
+            }
+        }
+    };
+</script>

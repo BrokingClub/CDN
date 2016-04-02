@@ -15,6 +15,10 @@ class UserService {
         try {
             const user = JSON.parse(userItem);
 
+            if(!user) {
+                return;
+            }
+
             this.token = user.token;
             this.name = user.name;
             this.admin = user.admin;

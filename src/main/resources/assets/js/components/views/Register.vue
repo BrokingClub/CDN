@@ -23,6 +23,7 @@
 
 <script type="text/babel">
     import apiService from '../../services/apiService';
+    import userService from '../../services/userService';
 
     export default {
         data() {
@@ -36,7 +37,14 @@
             register() {
                 apiService.register(this.email, this.name, this.password)
                     .then(response => {
-                        console.log(response);
+                        const data = response.data;
+
+                        if(data.result !== true) {
+                            toastr.error('Bitte versuchen Sie es später erneut', 'Unbekannter Fehler');
+                            return;
+                        }
+
+                        userService.login(data.token, this.name, false);
                         toastr.success('Herzlick willkommen ' + this.name, 'Account registriert');
                         this.$route.router.go('/');
                     });

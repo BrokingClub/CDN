@@ -9,7 +9,7 @@
         <div class="nav navbar-nav pull-sm-right">
             <a class="nav-item nav-link" v-link="{ path: '/anmelden' }" v-if="!userService.loggedIn">Anmelden</a>
             <a class="nav-item nav-link" v-link="{ path: '/registrieren' }" v-if="!userService.loggedIn">Registrieren</a>
-            <a class="nav-item nav-link" v-link="{ path: '/backend' }" v-if="userService.isAdmin">Backend</a>
+            <a class="nav-item nav-link" v-link="{ path: '/backend' }" v-if="userService.admin">Backend</a>
             <a class="nav-item nav-link" href="" v-if="userService.loggedIn" @click="logout($event)">Abmelden</a>
         </div>
     </nav>
@@ -27,7 +27,7 @@
         methods: {
             logout(event) {
                 event.preventDefault();
-                toastr.info('Bis bald ' + this.userService.user.name, 'Abgemeldet');
+                toastr.info('Bis bald ' + this.userService.name, 'Abgemeldet');
                 userService.logout();
             }
         }
