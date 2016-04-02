@@ -10,6 +10,7 @@
     "lodash": "^4.7.0",
     "vue-resource": "^0.7.0",
     "font-awesome": "fontawesome#^4.5.0",
-    "nprogress": "^0.2.0"
+    "nprogress": "^0.2.0",
+    "owl.carousel": "owl-carousel2#^2.0.0-beta.3"
   }
 }

@@ -24,6 +24,21 @@
                 </div>
             </div>
             <!-- Add Product -->
+            <!-- Products -->
+            <div class="card-columns">
+                <div class="card" v-for="product in products">
+                    <img class="card-img-top" :src="product.image" style="width: 100%">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ product.name }}</h4>
+                        <p class="card-text">Preis: {{ product.price }} &euro;</p>
+                        <button type="button" class="btn btn-danger-outline btn-sm">
+                            Löschen
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Products -->
         </div>
         <!-- Products -->
 
@@ -157,11 +172,12 @@
                             }
 
                             toastr.success(this.product + ' wurde gespeichert', 'Produkt hinzugefügt');
+                            this.products.push(response.data.product);
                         })
                         .catch(() => NProgress.done());
                 };
 
-                fileReader.readAsBinaryString(file);
+                fileReader.readAsDataURL(file);
             }
         }
     };
