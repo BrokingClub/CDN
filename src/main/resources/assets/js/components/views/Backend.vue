@@ -1,9 +1,33 @@
 <template>
     <div class="row">
+
+        <!-- Products -->
         <div class="col-xs-12 col-lg-6">
             <h2>Produkte</h2>
             <br>
+            <!-- Add Product -->
+            <p>
+                <button class="btn btn-secondary btn-sm" data-toggle="collapse" data-target="#collapse">Produkt hinzufügen</button>
+            </p>
+            <div id="collapse" class="collapse">
+                <div class="card card-block">
+                    <div class="form-group">
+                        <label for="product">Produkt</label>
+                        <input id="product" type="text" class="form-control" placeholder="Produkt" v-model="product">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Preis &euro;</label>
+                        <input id="price" type="number" class="form-control" placeholder="Preis" v-model="price">
+                    </div>
+                    <input id="file" type="file">
+                    <button type="button" class="btn btn-primary" @click="addProduct()">Produkt hinzufügen</button>
+                </div>
+            </div>
+            <!-- Add Product -->
         </div>
+        <!-- Products -->
+
+        <!-- Users -->
         <div class="col-xs-12 col-lg-6">
             <h2>Benutzer</h2>
             <br>
@@ -11,7 +35,6 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Admin</th>
@@ -21,7 +44,6 @@
                 <tbody>
                 <tr v-for="user in users">
                     <th scope="row">{{ $index + 1 }}</th>
-                    <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td style="text-align: center">
@@ -36,6 +58,8 @@
                 </tbody>
             </table>
         </div>
+        <!-- Users -->
+
     </div>
 </template>
 
@@ -45,7 +69,9 @@
     export default {
         data() {
             return {
-                users: []
+                users: [],
+                product: '',
+                price: 0
             };
         },
         route: {
@@ -89,6 +115,9 @@
 
                         toastr.success(user.name + ' wurde aus der Datenbank gelöscht', 'Löschen erfolgreich');
                     });
+            },
+            addProduct() {
+
             }
         }
     };
