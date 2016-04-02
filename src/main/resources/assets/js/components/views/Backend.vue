@@ -73,7 +73,16 @@
                     });
             },
             deleteUser(user) {
+                apiService.deleteUser(user)
+                    .then(response => {
+                        if(response.data.result !== true) {
+                            toastr.error(user.name + ' konnte nicht gelöscht werden', 'Fehler beim Löschen');
+                            return;
+                        }
 
+                        _.remove(this.users, user);
+                        toastr.success(user.name + ' wurde aus der Datenbank gelöscht', 'Löschen erfolgreich');
+                    });
             }
         }
     };

@@ -36,6 +36,13 @@ class ApiService {
         });
     }
 
+    deleteUser(user) {
+        return this.post('/user/delete', {
+            token: userService.user.token,
+            id: user.id
+        });
+    }
+
     post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {
