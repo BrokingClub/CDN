@@ -1,10 +1,10 @@
 <template>
     <div class="row">
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-lg-6">
             <h2>Produkte</h2>
             <br>
         </div>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-lg-6">
             <h2>Benutzer</h2>
             <br>
             <table class="table">
