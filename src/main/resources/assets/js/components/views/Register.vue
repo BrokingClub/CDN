@@ -36,6 +36,7 @@
             register() {
                 apiService.register(this.email, this.name, this.password)
                     .then(response => {
+                        console.log(response);
                         toastr.success('Herzlick willkommen ' + this.name, 'Account registriert');
                         this.$route.router.go('/');
                     });

@@ -22,11 +22,11 @@ class ApiService {
     }
 
     get(url) {
-        return this.handleError(this.http.get(url));
+        return this.handleError(this.http.get('/api' + url));
     }
 
     post(url, data) {
-        return this.handleError(this.http.post(url, data));
+        return this.handleError(this.http.post('/api' + url, data));
     }
 
     handleError(promise) {

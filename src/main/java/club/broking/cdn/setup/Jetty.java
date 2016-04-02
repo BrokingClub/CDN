@@ -1,6 +1,6 @@
 package club.broking.cdn.setup;
 
-import club.broking.cdn.servlets.IndexServlet;
+import club.broking.cdn.servlets.RegisterServlet;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -28,6 +28,8 @@ public class Jetty {
         holder.setInitParameter("resourceBase", "./src/main/public");
         holder.setInitParameter("dirAllowed", "false");
         /* Default Servlet */
+
+        context.addServlet(RegisterServlet.class, "/api/register");
 
         /* Error Handler */
         ErrorPageErrorHandler errorHandler = new ErrorPageErrorHandler();
