@@ -24,7 +24,7 @@ router.map({
     '/': {
         component: Shop
     },
-    '/warenkorb': {
+    '/einkaufswagen': {
         component: ShoppingCart
     },
     '/bestellungen': {

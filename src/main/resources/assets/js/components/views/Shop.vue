@@ -6,8 +6,8 @@
                 <h4 class="card-title">{{ product.name }}</h4>
                 <p class="card-text">Preis: {{ product.price }} &euro;</p>
                 <button type="button" class="btn btn-primary-outline" @click="buy(product)">
-                    Kaufen
-                    <i class="fa fa-shopping-basket"></i>
+                    In den Einkaufswagen
+                    <i class="fa fa-shopping-cart"></i>
                 </button>
             </div>
         </div>
@@ -27,7 +27,7 @@
         methods: {
             buy(product) {
                 if(!userService.user) {
-                    toastr.info('Sie müssen sich anmelden um Produkte zu kaufen', 'Anmeldung erforderlich');
+                    toastr.info('Sie müssen sich anmelden um Produkte in den Einkaufswagen zu legen', 'Anmeldung erforderlich');
                     this.$route.router.go('/anmelden');
                     return;
                 }
