@@ -1,4 +1,4 @@
-package club.broking.cdn.servlets.models;
+package club.broking.cdn.servlets.register;
 
 public class RegisterRequest {
 
