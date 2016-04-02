@@ -1,12 +1,15 @@
 package club.broking.cdn.setup;
 
+import club.broking.cdn.services.CassandraService;
+
 public class Bootstrap {
 
     public void setup() {
-        Cassandra cassandra = new Cassandra();
+        CassandraService cassandraService = CassandraService.getInstance();
         Jetty jetty = new Jetty();
 
-        cassandra.setup();
+        cassandraService.connect("localhost");
+        cassandraService.createSchema();
         jetty.setup();
     }
 
