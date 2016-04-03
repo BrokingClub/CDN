@@ -8,6 +8,7 @@ import club.broking.cdn.servlets.products.ProductsServlet;
 import club.broking.cdn.servlets.register.RegisterServlet;
 import club.broking.cdn.servlets.delete.user.DeleteUserServlet;
 import club.broking.cdn.servlets.shopping.cart.ShoppingCartServlet;
+import club.broking.cdn.servlets.shopping.cart.add.ShoppingCartAddServlet;
 import club.broking.cdn.servlets.users.UsersServlet;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
@@ -46,6 +47,7 @@ public class Jetty {
         context.addServlet(ProductsServlet.class, "/api/products");
         context.addServlet(DeleteProductServlet.class, "/api/delete/product");
         context.addServlet(ShoppingCartServlet.class, "/api/shopping/cart");
+        context.addServlet(ShoppingCartAddServlet.class, "/api/shopping/cart/add");
 
         /* Error Handler */
         ErrorPageErrorHandler errorHandler = new ErrorPageErrorHandler();
