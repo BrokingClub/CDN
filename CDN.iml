@@ -33,5 +33,6 @@
     <orderEntry type="library" name="Maven: org.mindrot:jbcrypt:0.3m" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.20" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.20" level="project" />
+    <orderEntry type="library" name="CDN node_modules" level="project" />
   </component>
 </module>

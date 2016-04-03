@@ -11,7 +11,7 @@ import com.datastax.driver.mapping.Result;
 public class DeleteProductServlet extends AbstractJsonServlet<DeleteProductRequest, DeleteProductResponse> {
 
     private final CassandraService cassandraService;
-    private final ProductAccessor ProductAccessor;
+    private final ProductAccessor productAccessor;
     private final TokenService tokenService;
 
     public DeleteProductServlet() {
@@ -19,7 +19,7 @@ public class DeleteProductServlet extends AbstractJsonServlet<DeleteProductReque
 
         this.cassandraService = CassandraService.getInstance();
         MappingManager mappingManager = cassandraService.getMappingManager();
-        this.ProductAccessor = mappingManager.createAccessor(ProductAccessor.class);
+        this.productAccessor = mappingManager.createAccessor(ProductAccessor.class);
         this.tokenService = TokenService.getInstance();
     }
 
@@ -44,7 +44,7 @@ public class DeleteProductServlet extends AbstractJsonServlet<DeleteProductReque
     }
 
     private Product findById(String id) {
-        Result<Product> Products = this.ProductAccessor.all();
+        Result<Product> Products = this.productAccessor.all();
 
         for(Product product:Products) {
             if(product.getId().toString().equals(id)) {
