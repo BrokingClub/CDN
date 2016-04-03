@@ -42,7 +42,7 @@ public class CassandraService {
         this.session.execute("CREATE KEYSPACE IF NOT EXISTS shop WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': 3 };");
         this.session.execute("CREATE TABLE IF NOT EXISTS shop.users (id uuid, email text, name text, password text, admin boolean, PRIMARY KEY (id));");
         this.session.execute("CREATE TABLE IF NOT EXISTS shop.products (id uuid, name text, price double, image text, PRIMARY KEY (id));");
-        this.session.execute("CREATE TABLE IF NOT EXISTS shop.shopping_cart (user_id uuid, product_id uuid, PRIMARY KEY (user_id, product_id));");
+        this.session.execute("CREATE TABLE IF NOT EXISTS shop.shopping_cart (id uuid, user_id uuid, product_id uuid, PRIMARY KEY (id, user_id, product_id));");
         this.session.execute("CREATE TABLE IF NOT EXISTS shop.orders (id uuid, user_id uuid, total_price double, created_at timestamp, PRIMARY KEY(id, user_id));");
         this.session.execute("CREATE TABLE IF NOT EXISTS shop.order_products (order_id uuid, name text, price double, image text, PRIMARY KEY(order_id));");
     }

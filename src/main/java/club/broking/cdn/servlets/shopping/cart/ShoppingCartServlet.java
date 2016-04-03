@@ -38,13 +38,14 @@ public class ShoppingCartServlet extends AbstractJsonServlet<ShoppingCartRequest
             return;
         }
 
-        PreparedStatement prepared = this.session.prepare("SELECT product_id FROM shop.shopping_cart WHERE user_id = ?;");
+        PreparedStatement prepared = this.session.prepare("SELECT id, product_id FROM shop.shopping_cart WHERE user_id = ?;");
         BoundStatement bound = new BoundStatement(prepared);
         UUID userId = UUID.fromString((String)claims.get("id"));
         ResultSet result = this.session.execute(bound.bind(userId));
-        Set<Product> products = new HashSet<Product>();
+        Set<ShoppingCartProduct> products = new HashSet<ShoppingCartProduct>();
 
         for(Row row:result) {
+            String id = row.getString("id");
             UUID productId = row.getUUID("product_id");
             Product product = this.findById(productId);
 
@@ -52,10 +53,14 @@ public class ShoppingCartServlet extends AbstractJsonServlet<ShoppingCartRequest
                 return;
             }
 
-            products.add(product);
+            ShoppingCartProduct shoppingCartProduct = new ShoppingCartProduct();
+            shoppingCartProduct.id = id;
+            shoppingCartProduct.product = product;
+
+            products.add(shoppingCartProduct);
         }
 
-        response.products = products.toArray(new Product[products.size()]);
+        response.shoppingCartProducts = products.toArray(new ShoppingCartProduct[products.size()]);
     }
 
     private Product findById(UUID id) {

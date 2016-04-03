@@ -5,6 +5,7 @@ import club.broking.cdn.services.TokenService;
 import club.broking.cdn.servlets.AbstractJsonServlet;
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
+import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Session;
 
 import java.util.Map;
@@ -32,14 +33,15 @@ public class ShoppingCartAddServlet extends AbstractJsonServlet<ShoppingCartAddR
             return;
         }
 
-        PreparedStatement prepared = this.session.prepare("INSERT INTO shop.shopping_cart (user_id, product_id) VALUES (?, ?);");
+        PreparedStatement prepared = this.session.prepare("INSERT INTO shop.shopping_cart (id, user_id, product_id) VALUES (?, ?, ?);");
         BoundStatement bound = new BoundStatement(prepared);
+        UUID id = UUID.randomUUID();
         UUID userId = UUID.fromString((String)claims.get("id"));
         UUID productId = UUID.fromString(request.productId);
-
-        this.session.execute(bound.bind(userId, productId));
+        ResultSet result = this.session.execute(bound.bind(id, userId, productId));
 
         response.result = true;
+        response.id = result.one().getString("id");
     }
 
 }
