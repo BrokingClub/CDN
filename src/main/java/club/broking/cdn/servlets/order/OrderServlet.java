@@ -55,28 +55,18 @@ public class OrderServlet extends AbstractJsonServlet<OrderRequest, OrderRespons
     }
 
     private Product[] findProducts(String[] productIds) {
-        Set<Product> products = new HashSet<Product>();
+        List<Product> products = new ArrayList<Product>();
         Result<Product> allProducts = this.productAccessor.all();
 
         for(Product product:allProducts) {
-            String productId = product.getId().toString();
-
-            if(this.contains(productIds, productId)) {
-                products.add(product);
+            for(String productId:productIds) {
+                if(product.getId().toString().equals(productId)) {
+                    products.add(product);
+                }
             }
         }
 
         return products.toArray(new Product[products.size()]);
-    }
-
-    private boolean contains(String[] array, String input) {
-        for(String element:array) {
-            if(element.equals(input)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private double calculateTotalPrice(Product[] products) {
