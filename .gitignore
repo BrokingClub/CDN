@@ -13,6 +13,6 @@ hs_err_pid*
 
 /.idea
 /node_modules
-/src/main/public/components
-/src/main/public/css
-/src/main/public/js
+/public/components
+/public/css
+/public/js

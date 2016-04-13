@@ -1,7 +1,7 @@
 var elixir = require('laravel-elixir');
 var webpackConfig = require('./webpack.config');
 elixir.config.assetsPath = 'src/main/resources/assets';
-elixir.config.publicPath = 'src/main/public';
+elixir.config.publicPath = 'public';
 
 require('laravel-elixir-webpack');
 
