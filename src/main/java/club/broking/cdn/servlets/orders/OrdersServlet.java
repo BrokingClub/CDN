@@ -34,13 +34,15 @@ public class OrdersServlet extends AbstractJsonServlet<OrdersRequest, OrdersResp
             return;
         }
 
-        PreparedStatement prepared = this.session.prepare("SELECT id, total_price, created_at FROM shop.orders WHERE user_id = ?;");
-        BoundStatement bound = new BoundStatement(prepared);
         UUID userId = UUID.fromString((String)claims.get("id"));
-        ResultSet result = this.session.execute(bound.bind(userId));
+        ResultSet result = this.session.execute("SELECT id, user_id, total_price, created_at FROM shop.orders;");
         Set<Order> orders = new HashSet<Order>();
 
         for(Row row:result) {
+            if(!row.getUUID("user_id").equals(userId)) {
+                continue;
+            }
+
             UUID orderId = row.getUUID("id");
             Product[] products = this.findProductsBy(orderId);
             Order order = new Order();
@@ -56,12 +58,14 @@ public class OrdersServlet extends AbstractJsonServlet<OrdersRequest, OrdersResp
     }
 
     private Product[] findProductsBy(UUID orderId) {
-        PreparedStatement prepared = this.session.prepare("SELECT name, price, image FROM shop.order_products WHERE order_id = ?;");
-        BoundStatement bound = new BoundStatement(prepared);
-        ResultSet result = this.session.execute(bound.bind(orderId));
+        ResultSet result = this.session.execute("SELECT order_id, name, price, image FROM shop.order_products;");
         Set<Product> products = new HashSet<Product>();
 
         for(Row row:result) {
+            if(!row.getUUID("order_id").equals(orderId)) {
+                continue;
+            }
+
             Product product = new Product();
 
             product.setName(row.getString("name"));

@@ -27,6 +27,7 @@
 </template>
 
 <script type="text/babel">
+    import apiService from '../../services/apiService';
     import shoppingCartService from '../../services/shoppingCartService';
 
     export default {
@@ -63,11 +64,17 @@
                     return;
                 }
 
-                toastr.success('Ihre Bestellung über ' + this.totalPrice + ' &euro; wurde angenommen', 'Bestellung abgesendet');
+                apiService.order(this.shoppingCartService.getRealProducts())
+                    .then(response => {
+                        if(response.data.result !== true) {
+                            toastr.error('Die Bestellung konnte nicht aufgenommen werden', 'Bestellung fehlgeschlagen');
+                            return;
+                        }
 
-                this.shoppingCartService.products = [];
-
-                this.$route.router.go('/bestellungen');
+                        toastr.success('Ihre Bestellung über ' + this.totalPrice + ' &euro; wurde angenommen', 'Bestellung abgesendet');
+                        this.shoppingCartService.clearServer();
+                        this.$route.router.go('/bestellungen');
+                    });
             }
         }
     };

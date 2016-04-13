@@ -14,7 +14,15 @@ class ShoppingCartService {
     }
 
     clear() {
-        this.products.length = [];
+        this.products = [];
+    }
+
+    clearServer() {
+        this.products.forEach(product => {
+            apiService.deleteFromShoppingCart(product.id);
+        });
+
+        this.clear();
     }
 
     totalPrice() {
@@ -53,6 +61,14 @@ class ShoppingCartService {
         }
 
         apiService.deleteFromShoppingCart(id);
+    }
+
+    getRealProducts() {
+        const realProducts = [];
+
+        this.products.forEach(product => realProducts.push(product.product));
+
+        return realProducts;
     }
 
 }

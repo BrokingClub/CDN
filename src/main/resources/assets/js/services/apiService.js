@@ -83,6 +83,23 @@ class ApiService {
         })
     }
 
+    order(products) {
+        const productIds = [];
+
+        products.forEach(product => productIds.push(product.id));
+
+        return this.post('/order', {
+            token: userService.user.token,
+            productIds: productIds
+        });
+    }
+
+    orders() {
+        return this.post('/orders', {
+            token: userService.user.token
+        });
+    }
+
     post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {

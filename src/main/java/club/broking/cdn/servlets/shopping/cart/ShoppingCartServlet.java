@@ -44,7 +44,7 @@ public class ShoppingCartServlet extends AbstractJsonServlet<ShoppingCartRequest
 
         for(Row row:result) {
             if(!row.getUUID("user_id").equals(userId)) {
-               return;
+                continue;
             }
 
             UUID id = row.getUUID("id");

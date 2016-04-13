@@ -90,13 +90,14 @@ public class OrderServlet extends AbstractJsonServlet<OrderRequest, OrderRespons
     }
 
     private void addToOrder(UUID orderId, Product product) {
-        PreparedStatement prepared = this.session.prepare("INSERT INTO shop.order_products (order_id, name, price, image) VALUES (?, ?, ?, ?);");
+        PreparedStatement prepared = this.session.prepare("INSERT INTO shop.order_products (id, order_id, name, price, image) VALUES (?, ?, ?, ?, ?);");
         BoundStatement bound = new BoundStatement(prepared);
+        UUID id = UUID.randomUUID();
         String name = product.getName();
         double price = product.getPrice();
         String image = product.getImage();
 
-        this.session.execute(bound.bind(orderId, name, price, image));
+        this.session.execute(bound.bind(id, orderId, name, price, image));
     }
 
 }
