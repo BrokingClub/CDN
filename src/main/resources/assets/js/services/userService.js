@@ -1,3 +1,5 @@
+import shoppingCartService from './shoppingCartService';
+
 class UserService {
 
     constructor() {
@@ -17,6 +19,8 @@ class UserService {
             }
 
             this.user = user;
+
+            setTimeout(() => shoppingCartService.refresh(), 1);
         } catch(err) {
             console.error(err);
         }
@@ -30,12 +34,14 @@ class UserService {
         };
 
         localStorage.setItem('user', JSON.stringify(this.user));
+        shoppingCartService.refresh();
     }
 
     logout() {
         this.user = null;
 
         localStorage.removeItem('user');
+        shoppingCartService.clear();
     }
 
 }

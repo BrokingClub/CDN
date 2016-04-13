@@ -63,6 +63,26 @@ class ApiService {
         });
     }
 
+    shoppingCart() {
+        return this.post('/shopping/cart', {
+            token: userService.user.token
+        });
+    }
+
+    addToShoppingCart(product) {
+        return this.post('/shopping/cart/add', {
+            token: userService.user.token,
+            productId: product.id
+        });
+    }
+
+    deleteFromShoppingCart(id) {
+        return this.post('/shopping/cart/delete', {
+            token: userService.user.token,
+            id: id
+        })
+    }
+
     post(url, data = {}) {
         return this.http.post('/api' + url, data)
             .catch(err => {

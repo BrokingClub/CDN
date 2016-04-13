@@ -12,9 +12,9 @@
             </div>
 
             <ul class="list-group">
-                <button type="button" class="list-group-item" v-for="product in products" track-by="$index" @click="removeFromCart($index)">
-                    <span class="label label-success label-pill pull-xs-right">{{ product.price }} &euro;</span>
-                    {{ product.name }}
+                <button type="button" class="list-group-item" v-for="product in products" track-by="$index" @click="removeFromCart(product.id)">
+                    <span class="label label-success label-pill pull-xs-right">{{ product.product.price }} &euro;</span>
+                    {{ product.product.name }}
                 </button>
             </ul>
 
@@ -50,16 +50,12 @@
                 return `Es ${ this.productCount === 1 ? 'befindet' : 'befinden' } sich <strong>${ this.productCount } ${ this.productCount === 1 ? 'Produkt' : 'Produkte' }</strong> im Einkaufswagen.`;
             },
             totalPrice() {
-                let totalPrice = 0;
-
-                this.products.forEach(product => totalPrice += product.price);
-
-                return totalPrice;
+                return this.shoppingCartService.totalPrice();
             }
         },
         methods: {
-            removeFromCart(index) {
-                this.products.splice(index, 1);
+            removeFromCart(id) {
+                this.shoppingCartService.remove(id);
             },
             order() {
                 if(this.productCount === 0) {

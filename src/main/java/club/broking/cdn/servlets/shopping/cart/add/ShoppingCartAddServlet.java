@@ -38,10 +38,11 @@ public class ShoppingCartAddServlet extends AbstractJsonServlet<ShoppingCartAddR
         UUID id = UUID.randomUUID();
         UUID userId = UUID.fromString((String)claims.get("id"));
         UUID productId = UUID.fromString(request.productId);
-        ResultSet result = this.session.execute(bound.bind(id, userId, productId));
+
+        this.session.execute(bound.bind(id, userId, productId));
 
         response.result = true;
-        response.id = result.one().getString("id");
+        response.id = id.toString();
     }
 
 }

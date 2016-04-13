@@ -33,7 +33,7 @@
                     return;
                 }
 
-                shoppingCartService.products.push(product);
+                shoppingCartService.add(product);
             }
         },
         route: {
@@ -43,6 +43,6 @@
                         this.products = response.data.products;
                     });
             }
-        },
+        }
     };
 </script>
